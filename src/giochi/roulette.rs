@@ -3,30 +3,8 @@ use std::thread;
 use std::time::Duration;
 use ansi_term::Colour;
 use rand::{seq::IteratorRandom, thread_rng};
-use crate::utils::pulisci_schermo;
+use crate::utils::{pulisci_schermo, Puntata, Giocata};
 use crate::atrio::atrio;
-
-// struttture necessarie
-#[derive(Debug, Clone)]
-enum Puntata {
-    Numero(i32),
-    Colore(String),
-    PariDispari(String),
-    PrimaMeta(String),
-    SecondaMeta(String),
-    PrimaRiga(String),
-    SecondaRiga(String),
-    TerzaRiga(String),
-    Terzina([i32; 3]),
-}
-
-#[derive(Debug, Clone)]
-struct Giocata {
-    scommessa: i32,
-    puntata: Puntata,
-    scelta: String,
-}
-
 
 //funzione principale del gioco
 pub fn run(credito: i32) {

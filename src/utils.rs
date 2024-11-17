@@ -71,6 +71,26 @@ pub enum Carta<'a> {
     },
 }
 
+#[derive(Debug, Clone)]
+pub enum Puntata {
+    Numero(i32),
+    Colore(String),
+    PariDispari(String),
+    PrimaMeta(String),
+    SecondaMeta(String),
+    PrimaRiga(String),
+    SecondaRiga(String),
+    TerzaRiga(String),
+    Terzina([i32; 3]),
+}
+
+#[derive(Debug, Clone)]
+pub struct Giocata {
+    pub scommessa: i32,
+    pub puntata: Puntata,
+    pub scelta: String,
+}
+
 pub fn genera_mazzo() -> Vec<Carta<'static>> {
     const SEMI: [&str; 4] = ["cuori", "quadri", "picche", "fiori"];
     let mut mazzo: Vec<Carta> = Vec::new();
