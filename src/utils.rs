@@ -1,5 +1,6 @@
 use rand::prelude::IteratorRandom;
 use rand::thread_rng;
+use rand::seq::SliceRandom;
 use std::process::{Command, exit};
 
 #[derive(Debug)]
@@ -89,6 +90,14 @@ pub struct Giocata {
     pub scommessa: i32,
     pub puntata: Puntata,
     pub scelta: String,
+}
+
+#[derive(Debug, Clone)]
+pub struct Cavallo {
+    pub nome:String,
+    pub colore:String,
+    pub velocità:i32,
+    pub posizione: usize
 }
 
 pub fn genera_mazzo() -> Vec<Carta<'static>> {
@@ -213,6 +222,29 @@ pub fn pesca_carta(mazzo: &mut Vec<Carta<'static>>) {
     } else {
         println!("Non ci sono più carte nel mazzo");
     }
+}
+
+pub fn genera_cavalli() -> Vec<Cavallo>{
+    let mut generatore = thread_rng();
+
+    let mut nomi = vec!["Pegasus", "Saetta", "Hurricane", "Blitz", "Tornado", "Aaron", "Atlantis", "Dorian", "Enea", "Fiona", "Gerard", "Daphne", "Ermes", "Bob", "Gaia", "Hector", "Kaos", "Leonard", "Lupin", "Megan", "Nebbia"];
+    nomi.shuffle(&mut generatore);
+    let mut colori = vec!["nero", "bianco", "marrone", "grigio", "sauro", "bruno"];
+    colori.shuffle(&mut generatore);
+    let mut velocità = vec![2, 4, 6, 9, 11];
+    velocità.shuffle(&mut generatore);
+
+    let mut cavalli = Vec::new();
+    for i in 0..5 {
+        let cavallo = Cavallo {
+            nome: nomi[i].to_string(),
+            colore: colori[i].to_string(),
+            velocità: velocità[i],
+            posizione: 0
+        };
+        cavalli.push(cavallo);
+    }
+    cavalli
 }
 
 pub fn pulisci_schermo() {
