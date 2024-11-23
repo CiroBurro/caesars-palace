@@ -34,16 +34,16 @@ fn prima_scelta(credito: i32) {
 }
 
 fn scegli_gioco(credito: i32) {
-    println!("\nScelga il gioco a cui vuole giocare:\n1. Roulette\n2. Blackjack\n3. Corsa dei cavalli\n4. Lancio dei dadi\n5. Torna indietro\n");
+    println!("\nScelga il gioco a cui vuole giocare:\n1. Roulette\n2. Corsa dei cavalli\n3. Torna indietro\n");//4. Lancio dei dadi\n5. Blackjack\n
     let mut scelta = String::new();
     io::stdin().read_line(&mut scelta).expect("Errore di lettura");
 
     match scelta.trim() {
         "1" => crate::giochi::roulette::run(credito),
-        "2" => crate::giochi::blackjack::run(credito),
-        "3" => crate::giochi::cavalli::run(credito),
-        "4" => crate::giochi::dadi::run(credito),
-        "5" => prima_scelta(credito),
+        //"2" => crate::giochi::blackjack::run(credito),
+        "2" => crate::giochi::cavalli::run(credito),
+        //"4" => crate::giochi::dadi::run(credito),
+        "3" => prima_scelta(credito),
         _ => scegli_gioco(credito),
     }
 }
